@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use PHPUnit\TextUI\Application;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         return view('users.index', [
-            'users' => User::all()
+            'users' => User::paginate(3)
         ]);
     }
 
